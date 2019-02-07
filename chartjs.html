@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>      
+    </title>
+    
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+	
+	<style>
+	.barChartDiv {
+  max-width: 350px;
+  max-height: 300px;
+}
+.lineChartDiv {
+  max-width: 350px;
+  max-height: 300px;
+}
+.pieChartDiv {
+  max-width: 350px;
+  max-height: 300px;
+}
+.multiaxisChartDiv{
+ max-width: 350px;
+  max-height: 300px;
+  }
+	</style>
+</head>
+<body>
+    
+  
+    <table>
+	<tr>
+	<td>
+	<div class="barChartDiv">
+      <canvas id="barChartCanvas" width="350" height="300"></canvas>
+    </div>
+	</td><td>
+		<div class="lineChartDiv">
+      <canvas id="lineChartCanvas" width="350" height="300"></canvas>
+    </div>
+	</td>
+	<tr>
+	<td>
+	<div class="pieChartDiv">
+      <canvas id="pieChartCanvas" width="350" height="300"></canvas>
+    </div>
+	</td>
+	<td>
+	<div class="multiaxisChartDiv">
+      <canvas id="multiaxisChartCanvas" width="350" height="300"></canvas>
+    </div>
+	</td>
+	</tr>
+	</table>
+
+<script>
+var ctx = document.getElementById("barChartCanvas").getContext('2d');
+var data= {
+        labels: ["Data1", "Data2", "Data3", "Data4"],
+        datasets: [{
+            label: ['Legend1'],
+            data: [12, 19, 3, 15],
+            borderWidth: 1,
+			 backgroundColor: '#ff6384'
+        
+        
+        },{
+		 label: ['Legend2'],
+            data: [16, 12, 8, 5],
+            borderWidth: 1,
+			 backgroundColor: '#66ccff'}]
+    };
+	
+	
+var barChart = new Chart(ctx, {
+    type: 'bar',
+  data
+});
+
+var barChart = new Chart(ctx, {
+    type: 'bar',
+  data
+});
+
+var ctxline = document.getElementById("lineChartCanvas").getContext('2d');
+var lineChart = new Chart(ctxline, {
+    type: 'line',
+  data
+});
+data= {
+        labels: ["Data1", "Data2", "Data3", "Data4"],
+        datasets: [{
+            label: ['Legend1'],
+            data: [12, 19, 3, 15],
+            borderWidth: 1,
+			 backgroundColor: ['#ff6384','#6666ff','#ffff66','#66ccff']      
+        }]
+    };
+var ctxpie = document.getElementById("pieChartCanvas").getContext('2d');
+var pieChart = new Chart(ctxpie, {
+    type: 'pie',
+  data
+});
+
+var canvas = document.getElementById('multiaxisChartCanvas');
+new Chart(canvas, {
+  type: 'line',
+  data: {
+  labels: ["Data1", "Data2", "Data3", "Data4"],
+    datasets: [{
+      label: 'Legend1',
+      yAxisID: 'A',
+	   backgroundColor: '#ff6384',
+     data: [12, 19, 3, 15],
+    }, {
+      label: 'Legend2',
+      yAxisID: 'B',	 
+	  backgroundColor: '#66ccff',
+       data: [16, 12, 8, 5],
+    }]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        id: 'A',
+        type: 'linear',
+        position: 'left',
+      }, {
+        id: 'B',
+        type: 'linear',
+        position: 'right',
+       
+      }]
+    }
+  }
+});
+</script>
+</body>
+</html>
